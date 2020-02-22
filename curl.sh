@@ -1,0 +1,19 @@
+#! /bin/sh
+#
+# curl.sh
+# Copyright (C) 2020 white <white@Whites-Mac-Air.local>
+#
+# Distributed under terms of the MIT license.
+#
+token=eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJuU3NjeDE5QXZVNGo3ekl3elJnenE1SEVVTWU4UWN5aV8xMjFJdjJubnpRIn0.eyJqdGkiOiI3OWYwNjQwMy1hNWNkLTQ1OGEtYjlkNy0yNTFkZjIxYmFkMGQiLCJleHAiOjE1ODI0MDY4OTAsIm5iZiI6MCwiaWF0IjoxNTgyMzYzODczLCJpc3MiOiJodHRwczovL2FjY291bnQuYXZhaWxpbmsuY29tL2F1dGgvcmVhbG1zL2F2bGNsb3VkIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImNkZDhhNzAyLWJlZWUtNDk1Yi1hYmFiLTc1MmE4Y2Q2ODhlNSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImF2bGNsb3VkIiwiYXV0aF90aW1lIjoxNTgyMzYzNjkwLCJzZXNzaW9uX3N0YXRlIjoiMGZlZmMzNmEtNTY1ZS00NzlmLTgyMzctZWUwMTU5NDQwZWMxIiwiYWNyIjoiMCIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwczovL21lZC5hdmFpbGluay5jb20iLCJodHRwczovL2ZvcnVtLmF2YWlsaW5rLmNvbSIsImh0dHA6Ly8xMC4yMDkuMTU2LjIxMDozMTU1NyIsImh0dHBzOi8vY2xvdWQuYXZhaWxpbmsuY29tIiwiaHR0cDovL2xvY2FsaG9zdDo0MzAwIiwiaHR0cDovLzEwLjIwOS4xNTYuMjQ1OjMwNzE4IiwiaHR0cDovL2Nsb3VkLmF2YWlsaW5rLmNvbSIsImh0dHA6Ly9sb2NhbGhvc3Q6NDIwMCIsImh0dHA6Ly8xMC4yMDkuMTU2LjI0MzozMjE2MCIsImh0dHBzOi8vYWkuYXZhaWxpbmsuY29tIiwiaHR0cDovLzEwLjIwOS4xNTYuMjEwOjMwNTE5IiwiaHR0cDovL2xvY2FsaG9zdDo4MDgwIiwiaHR0cHM6Ly8xMC4yMDkuMTU2LjI0MzozMDc2NyIsImh0dHA6Ly9haS5hdmFpbGluay5jb20iLCJodHRwOi8vMTAuMjA5LjE1Ni4yNDM6MzI1ODgiLCJodHRwOi8vMTAuMjA5LjE1Ni4yNDM6MzA0NDMiLCJodHRwOi8vMTAuMjA5LjE1Ni4yNDM6MzA3NjciXSwicmVzb3VyY2VfYWNjZXNzIjp7ImF2bGNsb3VkIjp7InJvbGVzIjpbIm5vcm1hbC11c2VyIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoibGF6eXdoaXRlIGppYSIsImdyb3VwcyI6W10sInByZWZlcnJlZF91c2VybmFtZSI6Imxhenl3aGl0ZSIsImdpdmVuX25hbWUiOiJsYXp5d2hpdGUiLCJmYW1pbHlfbmFtZSI6ImppYSIsImVtYWlsIjoiY3Bwa2luZ0AxMjYuY29tIn0.JH4LFARMd2HzSM3AZqRf46oUOxsgXhmkAosoG_uJy_Nh04VrWT-6v5FFYbhDnIyL0bqe1fst2dB3mwvAUwtRkHLWa16w77hPTox7tKs6CAhX-DeTuyR9TG--BmLtieMlg04Isc2PnzKmLAl0PbRBxlgrJ2BtVc_0l6NOs8rko3k242q9VEO7xkwF-fNA3SLhb9CMbYwF4ZMKX3MuFQuDDW4GG-seB0g9SZ3mZutwE4mF5adcQZ7ZDuaoyYVhtMsEEJOKSTJ0SwDdAUtP5Gdnx4XcaC4VdYAa_BQWu-cd_tBUw1e5nuHQi3LdoSVo58i8GVW7JEI9nkvoonKtKrHAtw
+for i in {1..10};do 
+    { 
+        #curl -i -XPOST -H "Authorization: $token" -d '{"cmd":"sleep 3"}' localhost:11000/launch
+        curl -i -XPOST -H "Authorization: $token" -d '{"cmd":"xclock"}' localhost:11000/launch
+        #curl -i -XPOST -H "Authorization: $token" -d '{"cmd":"ls"}' localhost:11000/launch
+        #curl -i -XPOST -d '{"cmd":"sleep 3"}' localhost:11000/launch
+    } &
+done
+wait
+
+
