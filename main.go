@@ -16,7 +16,7 @@ import (
     "strings"
     //"reflect"
     "encoding/json"
-    //"fmt"
+    "fmt"
     "runtime"
     "crypto/tls"
 
@@ -30,7 +30,7 @@ var mainLogger *log.Logger
 var mainLogFile *os.File
 
 func initMainLogger(){
-    mainLog := getLogFile("command.log")
+    mainLog := getLogFile("/tmp/.command.log")
     mainLogger = log.New(mainLog, "[INFO]", log.LstdFlags)
 }
 
@@ -74,9 +74,7 @@ func getAllowedCommand(token string) []string {
     path := "avlcloud/api/apps/?enabled=true"
     url := apiURL + path
 
-    //cmds := []string{"xclock"}
-
-    var cmds []string
+    var cmds []AllowedCommand
     client := resty.New()
     resp, err := client.
                     SetTimeout(3 * time.Second).
@@ -96,8 +94,13 @@ func getAllowedCommand(token string) []string {
         mainLogger.SetPrefix("[Error]")
         mainLogger.Printf("failed to get response: %s", url)
     }
-    cmds = append(cmds, "xclock")
-    return cmds
+
+    rt := []string{"xclock"}
+    for _, c := range cmds{
+        rt = append(rt, c.Command)
+    }
+    fmt.Printf("%v\n", rt)
+    return rt
 }
 
 func inTest(ele string, all []string) bool {
@@ -171,7 +174,7 @@ func launchHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-    accessLogFile := getLogFile("access.log")
+    accessLogFile := getLogFile("/tmp/.access.log")
     initMainLogger()
     defer accessLogFile.Close()
     defer mainLogFile.Close()
@@ -179,5 +182,5 @@ func main() {
     r := mux.NewRouter().StrictSlash(true)
     r.HandleFunc("/launch", launchHandler).Methods("POST")
     loggedRouter := handlers.LoggingHandler(accessLogFile, r)
-    http.ListenAndServe(":11000", loggedRouter)
+    http.ListenAndServe("127.0.0.1:11000", loggedRouter)
 }

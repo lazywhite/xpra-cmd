@@ -10,3 +10,15 @@ package main
 type CommandInfo struct {
     CMD string `json:cmd`
 }
+
+type AllowedCommand struct{
+    ID string `json:id`
+    CreatedTS string `json:timestamp_created`
+    UpdatedTS string `json:timestamp_updated`
+    Label string `json:label`
+    Command string `json:command`
+    Category string `json:category`
+    Icon string `json:icon`
+    Rank int `json:rank`
+    Enabled bool `json:enabled`
+}
