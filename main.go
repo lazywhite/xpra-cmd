@@ -16,7 +16,7 @@ import (
     "strings"
     //"reflect"
     "encoding/json"
-    "fmt"
+    //"fmt"
     "runtime"
     "crypto/tls"
 
@@ -99,7 +99,7 @@ func getAllowedCommand(token string) []string {
     for _, c := range cmds{
         rt = append(rt, c.Command)
     }
-    fmt.Printf("%v\n", rt)
+    //fmt.Printf("%v\n", rt)
     return rt
 }
 
